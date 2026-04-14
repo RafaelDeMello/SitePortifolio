@@ -1,8 +1,9 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 
 export function Hero() {
   const ref = useRef(null);
+  
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -11,45 +12,62 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const letterVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.05,
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    })
-  };
-
-  const title = "Desenvolvedor Full-Stack";
+  const particles = useMemo(() => 
+    [...Array(30)].map((_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 60,
+      size: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.2 + 0.1,
+      duration: Math.random() * 6 + 6,
+      delay: Math.random() * 4
+    })), 
+  []);
 
   return (
     <section ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-violet-950/20 via-transparent to-black" />
+      <div className="absolute inset-0 bg-[#0A0A0C]" />
+      
+      <div
+        className="absolute rounded-full blur-[150px]"
+        style={{
+          background: '#1A2A4A',
+          opacity: 0.08,
+          width: '600px',
+          height: '600px',
+          left: '50%',
+          top: '35%',
+          transform: 'translate(-50%, -50%)'
+        }}
+      />
+
+      <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-[#0A0A0C] via-transparent to-transparent" />
       
       <motion.div 
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0"
         style={{ y }}
       >
-        {[...Array(20)].map((_, i) => (
+        {particles.map((particle) => (
           <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-violet-500 rounded-full"
+            key={particle.id}
+            className="absolute rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              background: '#A8A8B8',
+              opacity: particle.opacity
             }}
             animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 0.8, 0.3]
+              scale: [1, 2, 1],
+              opacity: [particle.opacity, particle.opacity * 0.3, particle.opacity]
             }}
             transition={{
-              duration: 2 + Math.random() * 2,
+              duration: particle.duration,
               repeat: Infinity,
-              delay: Math.random() * 2
+              delay: particle.delay,
+              ease: "easeInOut"
             }}
           />
         ))}
@@ -60,7 +78,7 @@ export function Hero() {
         style={{ opacity }}
       >
         <motion.p
-          className="text-violet-400 text-lg mb-4 tracking-widest uppercase"
+          className="text-[#5A5A72] text-sm mb-8 tracking-[0.3em] capitalize"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -68,54 +86,51 @@ export function Hero() {
           Olá, eu sou
         </motion.p>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 overflow-hidden">
-          {title.split("").map((letter, i) => (
-            <motion.span
-              key={i}
-              custom={i}
-              variants={letterVariants}
-              initial="hidden"
-              animate="visible"
-              className="inline-block bg-gradient-to-r from-white via-violet-200 to-cyan-200 bg-clip-text text-transparent"
-            >
-              {letter === " " ? "\u00A0" : letter}
-            </motion.span>
-          ))}
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 overflow-hidden tracking-tight text-white">
+          Rafael De Mello
         </h1>
 
+        <motion.div
+          className="h-px bg-[#2A4A6A] mx-auto mb-8"
+          initial={{ width: 0 }}
+          animate={{ width: '120px' }}
+          transition={{ delay: 0.8, duration: 1 }}
+        />
+
         <motion.p
-          className="text-gray-400 text-xl md:text-2xl max-w-2xl mx-auto mb-10"
+          className="text-[#7A7A8E] text-lg md:text-xl max-w-2xl mx-auto font-light"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.6 }}
         >
-          Criando experiências digitais com código e criatividade
+          Desenvolvedor Full Stack com foco em React e Node.js
         </motion.p>
+        
+        <motion.div
+          className="h-px bg-gradient-to-r from-transparent via-[#3D3D50] to-transparent my-10 mx-auto"
+          initial={{ width: 0 }}
+          animate={{ width: "100%" }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+        />
 
         <motion.div
           className="flex gap-4 justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
+          transition={{ delay: 1.4, duration: 0.6 }}
         >
           <motion.a
             href="#projetos"
-            className="px-8 py-4 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-full font-semibold text-white relative overflow-hidden group"
+            className="px-8 py-4 bg-[#1C1C24] rounded-full font-medium text-[#C8C8D5] border border-[#3D3D50] hover:border-[#4A7A9B] hover:bg-[#1A2A3A] transition-all"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="relative z-10">Ver Projetos</span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-violet-600"
-              initial={{ x: "100%" }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.3 }}
-            />
+            Ver Projetos
           </motion.a>
           
           <motion.a
             href="#contato"
-            className="px-8 py-4 border border-white/20 rounded-full font-semibold text-white hover:bg-white/5 transition-colors"
+            className="px-8 py-4 text-[#7A7A8E] bg-transparent border border-[#2E2E3A] rounded-full hover:text-[#A8A8B8] hover:border-[#4A7A9B] hover:bg-[#1A2A3A] transition-all"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -125,17 +140,17 @@ export function Hero() {
       </motion.div>
 
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+        animate={{ opacity: [0.4, 0.8, 0.4] }}
+        transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
-          <motion.div
-            className="w-1.5 h-3 bg-white/50 rounded-full"
-            animate={{ height: [8, 16, 8] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-        </div>
+        <motion.div
+          className="w-px bg-[#3D3D50]"
+          initial={{ height: 0 }}
+          animate={{ height: '48px' }}
+          transition={{ delay: 1.5, duration: 1 }}
+        />
+        <span className="text-[10px] tracking-[0.2em] text-[#5A5A72] uppercase">scroll</span>
       </motion.div>
     </section>
   );

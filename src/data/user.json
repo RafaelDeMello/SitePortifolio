@@ -1,0 +1,104 @@
+{
+  "profile": {
+    "name": "Rafael De Mello",
+    "initials": "RM",
+    "title": "Dev Full-Stack",
+    "location": "Santa Maria RS",
+    "description": "Desenvolvedor Full Stack com foco em React e Node.js, criando aplicações web modernas e funcionais a partir de projetos práticos.",
+    "bio": "Possuo experiência no desenvolvimento de interfaces responsivas, integração com APIs e estruturação de back-end seguindo boas práticas. Utilizo ferramentas de IA como ChatGPT, Claude e GitHub Copilot para otimizar o desenvolvimento.",
+    "goal": "Estou em constante evolução, buscando minha primeira oportunidade profissional como desenvolvedor e a chance de contribuir com projetos reais."
+  },
+  "skills": {
+    "frontend": [
+      { "name": "HTML/CSS", "level": 70 },
+      { "name": "JavaScript", "level": 65 },
+      { "name": "React", "level": 60 },
+      { "name": "TypeScript", "level": 55 },
+      { "name": "Tailwind CSS", "level": 60 }
+    ],
+    "backend": [
+      { "name": "Node.js", "level": 60 },
+      { "name": "Express", "level": 55 },
+      { "name": "REST APIs", "level": 60 },
+      { "name": "Prisma", "level": 50 }
+    ],
+    "tools": [
+      { "name": "Git / GitHub", "level": 60 },
+      { "name": "Vite", "level": 55 },
+      { "name": "Axios", "level": 60 },
+      { "name": "ESLint / Prettier", "level": 55 }
+    ],
+    "ai": [
+      { "name": "ChatGPT", "level": 75 },
+      { "name": "Claude", "level": 70 },
+      { "name": "GitHub Copilot", "level": 70 },
+      { "name": "n8n", "level": 70 },
+      { "name": "OpenCode", "level": 65 }
+    ]
+  },
+  "techGrid": [
+    { "name": "HTML/CSS", "icon": "Globe", "color": "#e34f26" },
+    { "name": "JavaScript", "icon": "Braces", "color": "#f7df1e" },
+    { "name": "React", "icon": "Atom", "color": "#61dafb" },
+    { "name": "TypeScript", "icon": "Hash", "color": "#3178c6" },
+    { "name": "Tailwind CSS", "icon": "Palette", "color": "#38bdf8" },
+    { "name": "Node.js", "icon": "Server", "color": "#68a063" },
+    { "name": "Express", "icon": "Box", "color": "#ffffff" },
+    { "name": "REST API", "icon": "Globe", "color": "#8BAEC8" },
+    { "name": "Prisma", "icon": "Database", "color": "#5a5a72" },
+    { "name": "Git", "icon": "Branch", "color": "#f05032" },
+    { "name": "Vite", "icon": "Zap", "color": "#646cff" },
+    { "name": "Axios", "icon": "ArrowUpRight", "color": "#5a29e4" },
+    { "name": "ChatGPT", "icon": "MessageSquare", "color": "#10a37f" },
+    { "name": "Claude", "icon": "Bot", "color": "#d4a574" },
+    { "name": "GitHub Copilot", "icon": "Bot", "color": "#7c3aed" },
+    { "name": "n8n", "icon": "Workflow", "color": "#ea4b71" }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Sistema de Agendamento para Estética Automotiva",
+      "description": "Aplicação web desenvolvida para facilitar o agendamento de serviços automotivos, permitindo que clientes visualizem horários disponíveis e realizem reservas de forma simples e intuitiva.",
+      "tags": ["React", "TypeScript", "Tailwind CSS"],
+      "color": { "from": "#1a2a3a", "to": "#2a3a4a" },
+      "github": null,
+      "demo": null
+    },
+    {
+      "id": 2,
+      "title": "Gerador de Documentos em PDF",
+      "description": "Sistema web para geração automatizada de documentos em PDF a partir de dados inseridos pelo usuário, com foco em automação de processos e praticidade.",
+      "tags": ["React", "Node.js", "Express"],
+      "color": { "from": "#2a2a3a", "to": "#3a3a4a" },
+      "github": null,
+      "demo": null
+    },
+    {
+      "id": 3,
+      "title": "Website Institucional com Integração de API",
+      "description": "Desenvolvimento de site institucional com foco em conversão, incluindo integração com API externa para exibição de dados dinâmicos.",
+      "tags": ["React", "Vite", "Tailwind CSS", "Axios"],
+      "color": { "from": "#1a1a2a", "to": "#2a2a3a" },
+      "github": null,
+      "demo": null
+    },
+    {
+      "id": 4,
+      "title": "Landing Pages com Foco em Conversão",
+      "description": "Desenvolvimento de landing pages otimizadas para conversão, com foco em direcionar usuários para contato via WhatsApp.",
+      "tags": ["React", "Tailwind CSS", "Vite"],
+      "color": { "from": "#2a1a2a", "to": "#3a2a3a" },
+      "github": null,
+      "demo": null
+    }
+  ],
+  "contact": {
+    "email": "rafaeldemello2023@gmail.com",
+    "github": "https://github.com/RafaelDeMello",
+    "linkedin": "https://www.linkedin.com/in/rafaeldemellodev",
+    "whatsapp": "559996471085"
+  },
+  "social": {
+    "github": "RafaelDeMello"
+  }
+}

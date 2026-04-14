@@ -35,7 +35,7 @@ const skills = [
   { name: "Node.js", level: 85 },
   { name: "PostgreSQL / MongoDB", level: 80 },
   { name: "Tailwind CSS", level: 92 },
-  { name: "AWS / Docker", level: 75 }
+  { name: "Docker", level: 25 }
 ];
 
 export { projects, skills };
