@@ -44,8 +44,8 @@ const projectDetails: Record<number, ProjectDetail> = {
     tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "html2pdf.js"],
     color: { from: "#1a2a3a", to: "#2a4a5a" },
     image: "/imgs/pdf1.png",
-    github: null,
-    demo: null,
+    github: "https://github.com/RafaelDeMello/ExportPDF",
+    demo: "https://export-pdf-plum.vercel.app/",
     status: 'completed',
     role: 'Desenvolvedor Full Stack',
     features: [
