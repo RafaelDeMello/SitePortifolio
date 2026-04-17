@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Download, Code2, Cpu, Zap } from 'lucide-react';
 
 export function About() {
   const ref = useRef(null);
@@ -40,17 +41,49 @@ export function About() {
               <div className="w-40 h-40 mx-auto mb-6 rounded-full bg-[#1C1C24] border border-[#3D3D50] flex items-center justify-center">
                 <span className="text-5xl font-bold text-[#A8A8B8]">RM</span>
               </div>
-              <p className="text-[#A8A8B8] text-lg leading-relaxed">
-                Desenvolvedor Full Stack com foco em React e Node.js. Possuo experiência no desenvolvimento de interfaces responsivas, integração com APIs e estruturação de back-end seguindo boas práticas.
+              <p className="text-[#A8A8B8] text-lg leading-relaxed mb-4">
+                Desenvolvedor Fullstack com foco em desenvolvimento web moderno, automações inteligentes e criação de agentes de Inteligência Artificial.
               </p>
+              <p className="text-[#7A7A8E] text-sm leading-relaxed mb-6">
+                Experiência prática com React, Node.js, integrações via n8n e uso avançado de ferramentas de IA no desenvolvimento de software. Comprometido com boas práticas de código, resolução criativa de problemas e entrega de valor real ao cliente.
+              </p>
+              <div className="flex items-center gap-2 text-sm text-[#5A5A72] mb-6">
+                <span>Engenharia de Software — UNOPAR (último semestre)</span>
+              </div>
+              <motion.a
+                href="/CV_PDF.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#1A2A3A] border border-[#4A7A9B] text-[#8BAEC8] hover:bg-[#1E2F45] hover:text-white transition-all"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Download className="w-4 h-4" />
+                <span className="font-medium">Download CV</span>
+              </motion.a>
             </div>
           </motion.div>
 
           <div className="space-y-6">
             {[
-              { title: "Full Stack", desc: "Desenvolvimento completo do front ao back-end" },
-              { title: "UI Responsiva", desc: "Interfaces modernas e mobile-first" },
-              { title: "AI-Powered", desc: "Ferramentas de IA para otimizar o desenvolvimento" }
+              { 
+                title: "Full Stack Development", 
+                desc: "Desenvolvimento completo do front ao back-end com React, Node.js e Next.js",
+                icon: Code2,
+                color: "#61dafb"
+              },
+              { 
+                title: "Automations & AI Agents", 
+                desc: "Criação de workflows com n8n e agentes de IA autônomos com LLMs",
+                icon: Cpu,
+                color: "#a855f7"
+              },
+              { 
+                title: "Modern Tools", 
+                desc: "TypeScript, Tailwind CSS, Prisma, Docker, Zod e shadcn/ui",
+                icon: Zap,
+                color: "#68a063"
+              }
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -59,8 +92,8 @@ export function About() {
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
               >
                 <div className="flex items-start gap-4 p-6 rounded-xl bg-[#121217] border border-[#2E2E3A] hover:border-[#4A7A9B] transition-colors">
-                  <div className="p-3 rounded-lg bg-[#1C1C24] text-[#7A7A8E]">
-                    <span className="text-xl">⚡</span>
+                  <div className="p-3 rounded-lg bg-[#1C1C24]" style={{ color: item.color }}>
+                    <item.icon className="w-5 h-5" />
                   </div>
                   <div>
                     <h3 className="text-lg font-medium text-[#E8E8EE] mb-1">{item.title}</h3>

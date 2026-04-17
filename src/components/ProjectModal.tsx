@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Github, Calendar, User, Code2 } from 'lucide-react';
+import { X, ExternalLink, Github, User, Code2 } from 'lucide-react';
 
 interface ProjectDetail {
   id: number;
@@ -8,11 +8,11 @@ interface ProjectDetail {
   fullDescription: string;
   tags: string[];
   color: { from: string; to: string };
+  image?: string;
   github: string | null;
   demo: string | null;
   status: 'completed' | 'in-progress' | 'planned';
   role: string;
-  duration: string;
   features: string[];
 }
 
@@ -28,7 +28,6 @@ const projectDetails: Record<number, ProjectDetail> = {
     demo: null,
     status: 'completed',
     role: 'Desenvolvedor Full Stack',
-    duration: '2 meses',
     features: [
       'Calendário interativo com disponibilidade em tempo real',
       'Sistema de agendamento com múltiplos serviços',
@@ -39,22 +38,23 @@ const projectDetails: Record<number, ProjectDetail> = {
   },
   2: {
     id: 2,
-    title: "Gerador de Documentos em PDF",
-    description: "Sistema para geração automatizada de documentos em PDF a partir de dados do usuário.",
-    fullDescription: "Aplicação web que permite aos usuários preencher formulários e gerar documentos profissionais em PDF automaticamente. Ideal para contratos, relatórios, certificados e outros documentos padronizados.",
-    tags: ["React", "Node.js", "Express"],
-    color: { from: "#2a2a3a", to: "#3a3a4a" },
+    title: "Gerador de Ordem de Serviço em PDF",
+    description: "Aplicação web para geração de Ordens de Serviço em PDF para prestadores de estética automotiva.",
+    fullDescription: "Aplicação web para geração de Ordens de Serviço em PDF, desenvolvida para pequenos prestadores de serviços de estética automotiva. Permite criar documentos profissionais com todos os dados do cliente, veículo, serviços realizados e valores, com exportação para PDF em formato A4.",
+    tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "html2pdf.js"],
+    color: { from: "#1a2a3a", to: "#2a4a5a" },
+    image: "/imgs/pdf1.png",
     github: null,
     demo: null,
     status: 'completed',
     role: 'Desenvolvedor Full Stack',
-    duration: '1 mês',
     features: [
-      'Editor de templates com preview em tempo real',
-      'Geração de PDF com alta qualidade',
-      'Armazenamento de documentos na nuvem',
-      'Compartilhamento via link seguro',
-      'Histórico de documentos gerados'
+      'Formulário completo com dados da empresa, cliente e veículo',
+      'Lista dinâmica de serviços com cálculo automático de subtotais e total geral',
+      'Preview em tempo real do documento que será gerado',
+      'Validação de campos obrigatórios com feedback visual',
+      'Geração de PDF em alta resolução com layout fiel ao preview',
+      'Design responsivo (funciona em desktop e mobile)'
     ]
   },
   3: {
@@ -68,7 +68,6 @@ const projectDetails: Record<number, ProjectDetail> = {
     demo: null,
     status: 'completed',
     role: 'Desenvolvedor Front-end',
-    duration: '3 semanas',
     features: [
       'Design moderno e responsivo',
       'Otimizado para SEO e performance',
@@ -88,7 +87,6 @@ const projectDetails: Record<number, ProjectDetail> = {
     demo: null,
     status: 'completed',
     role: 'Desenvolvedor Front-end',
-    duration: '1 semana cada',
     features: [
       'Design focado em conversão',
       'A/B testing integrado',
@@ -128,14 +126,21 @@ export function ProjectModal({ projectId, onClose }: ProjectModalProps) {
             className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] z-50 overflow-hidden rounded-2xl bg-[#121217] border border-[#2E2E3A] shadow-2xl"
           >
             <div 
-              className="h-48 md:h-56 relative"
+              className="h-48 md:h-56 relative overflow-hidden"
               style={{ background: `linear-gradient(135deg, ${project.color.from}, ${project.color.to})` }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-[#121217] to-transparent" />
+              {project.image && (
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="absolute inset-0 w-full h-full object-cover opacity-60"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121217] via-[#121217]/50 to-transparent" />
               
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors"
+                className="absolute top-4 right-4 p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors z-10"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -162,10 +167,6 @@ export function ProjectModal({ projectId, onClose }: ProjectModalProps) {
                 <div className="flex items-center gap-2 text-sm text-[#7A7A8E]">
                   <User className="w-4 h-4" />
                   <span>{project.role}</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-[#7A7A8E]">
-                  <Calendar className="w-4 h-4" />
-                  <span>{project.duration}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <span 

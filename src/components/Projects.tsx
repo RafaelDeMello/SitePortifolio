@@ -12,10 +12,11 @@ const projects = [
   },
   {
     id: 2,
-    title: "Gerador de Documentos em PDF",
-    description: "Sistema para geração automatizada de documentos em PDF a partir de dados do usuário.",
-    tags: ["React", "Node.js", "Express"],
-    color: { from: "#2a2a3a", to: "#3a3a4a" }
+    title: "Gerador de Ordem de Serviço em PDF",
+    description: "Aplicação web para geração de Ordens de Serviço em PDF para prestadores de estética automotiva.",
+    tags: ["React", "TypeScript", "Vite", "Tailwind CSS"],
+    color: { from: "#1a2a3a", to: "#2a4a5a" },
+    image: "/imgs/pdf1.png"
   },
   {
     id: 3,
@@ -79,11 +80,27 @@ export function Projects({ onProjectClick }: ProjectsProps) {
             >
               <div className="relative bg-[#0A0A0C] rounded-2xl overflow-hidden border border-[#2E2E3A] group-hover:border-[#4A7A9B] transition-colors">
                 <div 
-                  className="h-48 flex items-center justify-center relative"
+                  className="h-48 flex items-center justify-center relative overflow-hidden"
                   style={{ background: `linear-gradient(135deg, ${project.color.from}, ${project.color.to})` }}
                 >
-                  <span className="text-6xl text-white/20 font-mono">{'{ }'}</span>
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {project.image ? (
+                    <motion.img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-[120%] object-cover opacity-50 group-hover:opacity-70 transition-opacity"
+                      initial={{ y: 0 }}
+                      animate={{ y: ["0%", "-10%"] }}
+                      transition={{ 
+                        duration: 8, 
+                        repeat: Infinity, 
+                        repeatType: "reverse", 
+                        ease: "easeInOut" 
+                      }}
+                    />
+                  ) : (
+                    <span className="text-6xl text-white/20 font-mono relative z-10">{'{ }'}</span>
+                  )}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                     <div className="p-2 rounded-full bg-white/10 backdrop-blur">
                       <ArrowUpRight className="w-5 h-5 text-white" />
                     </div>

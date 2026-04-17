@@ -1,12 +1,12 @@
 {
   "profile": {
-    "name": "Rafael De Mello",
+    "name": "Rafael de Mello",
     "initials": "RM",
-    "title": "Dev Full-Stack",
+    "title": "Desenvolvedor Fullstack | Automações & Agentes de IA",
     "location": "Santa Maria RS",
-    "description": "Desenvolvedor Full Stack com foco em React e Node.js, criando aplicações web modernas e funcionais a partir de projetos práticos.",
-    "bio": "Possuo experiência no desenvolvimento de interfaces responsivas, integração com APIs e estruturação de back-end seguindo boas práticas. Utilizo ferramentas de IA como ChatGPT, Claude e GitHub Copilot para otimizar o desenvolvimento.",
-    "goal": "Estou em constante evolução, buscando minha primeira oportunidade profissional como desenvolvedor e a chance de contribuir com projetos reais."
+    "description": "Desenvolvedor Fullstack com foco em desenvolvimento web moderno, automações inteligentes e criação de agentes de Inteligência Artificial.",
+    "bio": "Experiência prática com React, Node.js, integrações via n8n e uso avançado de ferramentas de IA no desenvolvimento de software. Comprometido com boas práticas de código, resolução criativa de problemas e entrega de valor real ao cliente.",
+    "goal": "Engenharia de Software — UNOPAR (último semestre)"
   },
   "skills": {
     "frontend": [
@@ -20,19 +20,25 @@
       { "name": "Node.js", "level": 60 },
       { "name": "Express", "level": 55 },
       { "name": "REST APIs", "level": 60 },
-      { "name": "Prisma", "level": 50 }
+      { "name": "Prisma", "level": 50 },
+      { "name": "Docker", "level": 40 },
+      { "name": "SQL", "level": 50 },
+      { "name": "Next.js", "level": 45 }
     ],
     "tools": [
       { "name": "Git / GitHub", "level": 60 },
       { "name": "Vite", "level": 55 },
       { "name": "Axios", "level": 60 },
-      { "name": "ESLint / Prettier", "level": 55 }
+      { "name": "ESLint / Prettier", "level": 55 },
+      { "name": "Zod", "level": 55 },
+      { "name": "shadcn/ui", "level": 50 }
     ],
     "ai": [
       { "name": "ChatGPT", "level": 75 },
       { "name": "Claude", "level": 70 },
       { "name": "GitHub Copilot", "level": 70 },
       { "name": "n8n", "level": 70 },
+      { "name": "Gemini", "level": 60 },
       { "name": "OpenCode", "level": 65 }
     ]
   },
@@ -43,16 +49,22 @@
     { "name": "TypeScript", "icon": "Hash", "color": "#3178c6" },
     { "name": "Tailwind CSS", "icon": "Palette", "color": "#38bdf8" },
     { "name": "Node.js", "icon": "Server", "color": "#68a063" },
-    { "name": "Express", "icon": "Box", "color": "#ffffff" },
-    { "name": "REST API", "icon": "Globe", "color": "#8BAEC8" },
+    { "name": "Express", "icon": "Box", "color": "#8BAEC8" },
+    { "name": "Next.js", "icon": "Globe", "color": "#ffffff" },
+    { "name": "REST APIs", "icon": "Globe", "color": "#8BAEC8" },
     { "name": "Prisma", "icon": "Database", "color": "#5a5a72" },
+    { "name": "Docker", "icon": "Box", "color": "#2496ed" },
+    { "name": "SQL", "icon": "Database", "color": "#336791" },
     { "name": "Git", "icon": "Branch", "color": "#f05032" },
     { "name": "Vite", "icon": "Zap", "color": "#646cff" },
     { "name": "Axios", "icon": "ArrowUpRight", "color": "#5a29e4" },
+    { "name": "Zod", "icon": "CheckCircle", "color": "#3a3a4a" },
+    { "name": "shadcn/ui", "icon": "Boxes", "color": "#8BAEC8" },
     { "name": "ChatGPT", "icon": "MessageSquare", "color": "#10a37f" },
     { "name": "Claude", "icon": "Bot", "color": "#d4a574" },
     { "name": "GitHub Copilot", "icon": "Bot", "color": "#7c3aed" },
-    { "name": "n8n", "icon": "Workflow", "color": "#ea4b71" }
+    { "name": "n8n", "icon": "Workflow", "color": "#ea4b71" },
+    { "name": "Gemini", "icon": "Sparkles", "color": "#ea4b71" }
   ],
   "projects": [
     {
