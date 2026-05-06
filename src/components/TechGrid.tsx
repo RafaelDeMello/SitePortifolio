@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect, memo } from 'react';
 import { Atom, FileCode, Server, Palette, GitBranch, Database, Globe, Code2, Box, Hash, Zap, ArrowUpRight, Bot, MessageSquare, Braces, Layers, Workflow, CheckCircle, Boxes, Container, Sparkles, Layout } from 'lucide-react';
 import { skills } from '../data/content';
 
@@ -61,9 +61,62 @@ const categories = [
   { key: 'ai', label: 'IA', color: '#a855f7' },
 ];
 
+interface SkillCardProps {
+  skill: any;
+  catColor: string;
+  index: number;
+  isMobile: boolean;
+  isInView: boolean;
+  categoryIndex: number;
+}
+
+const SkillCard = memo(({ skill, catColor, index, isMobile, isInView, categoryIndex }: SkillCardProps) => {
+  const iconInfo = defaultIcons[skill.name] || { icon: 'Code2', color: catColor };
+  const IconComponent = iconMap[iconInfo.icon] || Code2;
+  
+  return (
+    <motion.div
+      key={skill.name}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : {}}
+      transition={{ delay: isMobile ? 0.3 + categoryIndex * 0.1 + index * 0.05 : 0.4 + Math.floor(categoryIndex / 2) * 0.15 + index * 0.05 }}
+      className={`flex flex-col items-center justify-center rounded-xl bg-[#121217] border border-[#2E2E3A] ${
+        isMobile ? 'p-3' : 'p-4 aspect-square'
+      }`}
+    >
+      <div
+        className={`flex items-center justify-center ${
+          isMobile ? 'w-8 h-8 mb-1' : 'w-10 h-10 mb-2'
+        }`}
+        style={{ color: iconInfo.color }}
+      >
+        <IconComponent className={isMobile ? "w-6 h-6" : "w-7 h-7"} />
+      </div>
+      <span className={`font-medium text-center leading-tight ${
+        isMobile ? 'text-[9px] text-[#7A7A8E]' : 'text-[10px] text-[#A8A8B8] group-hover:text-[#E8E8EE] transition-colors'
+      }`}>
+        {skill.name}
+      </span>
+    </motion.div>
+  );
+});
+
 export function TechGrid() {
   const ref = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const getMobileSkills = (catSkills: any[]) => {
+    if (!isMobile) return catSkills;
+    return catSkills.slice(0, 4);
+  };
 
   return (
     <div ref={ref} className="overflow-hidden">
@@ -89,38 +142,24 @@ export function TechGrid() {
                 </div>
                 
                 <div className={`grid gap-4`} style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
-                  {catSkills.map((skill: any, i: number) => {
-                    const iconInfo = defaultIcons[skill.name] || { icon: 'Code2', color: cat.color };
-                    const IconComponent = iconMap[iconInfo.icon] || Code2;
-                    
-                    return (
-                      <motion.div
-                        key={skill.name}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.4, delay: 0.4 + Math.floor(ci / 2) * 0.15 + i * 0.05 }}
-                        whileHover={{ scale: 1.08, y: -4 }}
-                        className="flex flex-col items-center justify-center p-4 rounded-xl bg-[#121217] border border-[#2E2E3A] hover:border-[#4A7A9B] transition-all cursor-default group aspect-square"
-                      >
-                        <div
-                          className="w-10 h-10 flex items-center justify-center mb-2 transition-transform"
-                          style={{ color: iconInfo.color }}
-                        >
-                          <IconComponent className="w-7 h-7" />
-                        </div>
-                        <span className="text-[10px] text-[#A8A8B8] font-medium text-center leading-tight group-hover:text-[#E8E8EE] transition-colors">
-                          {skill.name}
-                        </span>
-                      </motion.div>
-                    );
-                  })}
+                  {catSkills.map((skill: any, i: number) => (
+                    <SkillCard 
+                      key={skill.name}
+                      skill={skill}
+                      catColor={cat.color}
+                      index={i}
+                      isMobile={false}
+                      isInView={!!isInView}
+                      categoryIndex={ci}
+                    />
+                  ))}
                 </div>
               </motion.div>
             );
           })}
         </div>
       </div>
-
+      
       <div className="lg:hidden">
         <div className="space-y-10">
           {categories.map((cat, ci) => (
@@ -138,31 +177,17 @@ export function TechGrid() {
               </div>
               
               <div className="grid grid-cols-4 gap-3">
-                {(skills as any)[cat.key].map((skill: any, i: number) => {
-                  const iconInfo = defaultIcons[skill.name] || { icon: 'Code2', color: cat.color };
-                  const IconComponent = iconMap[iconInfo.icon] || Code2;
-                  
-                  return (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ delay: 0.3 + ci * 0.1 + i * 0.03 }}
-                      whileHover={{ scale: 1.1 }}
-                      className="flex flex-col items-center justify-center p-3 rounded-xl bg-[#121217] border border-[#2E2E3A] hover:border-[#4A7A9B] transition-all"
-                    >
-                      <div
-                        className="w-8 h-8 flex items-center justify-center mb-1"
-                        style={{ color: iconInfo.color }}
-                      >
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                      <span className="text-[9px] text-[#7A7A8E] font-medium text-center leading-tight">
-                        {skill.name}
-                      </span>
-                    </motion.div>
-                  );
-                })}
+                {getMobileSkills((skills as any)[cat.key]).map((skill: any, i: number) => (
+                  <SkillCard 
+                    key={skill.name}
+                    skill={skill}
+                    catColor={cat.color}
+                    index={i}
+                    isMobile={true}
+                    isInView={!!isInView}
+                    categoryIndex={ci}
+                  />
+                ))}
               </div>
             </motion.div>
           ))}

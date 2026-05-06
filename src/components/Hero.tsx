@@ -1,19 +1,28 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 
 export function Hero() {
   const ref = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
   
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 50 : 200]);
+  const opacity = useTransform(scrollYProgress, [0, isMobile ? 0.3 : 0.5], [1, 0]);
 
-  const particles = useMemo(() => 
-    [...Array(30)].map((_, i) => ({
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const particles = useMemo(() => {
+    if (isMobile) return [];
+    return [...Array(30)].map((_, i) => ({
       id: i,
       left: Math.random() * 100,
       top: Math.random() * 60,
@@ -21,8 +30,8 @@ export function Hero() {
       opacity: Math.random() * 0.2 + 0.1,
       duration: Math.random() * 6 + 6,
       delay: Math.random() * 4
-    })), 
-  []);
+    }))
+  }, [isMobile]);
 
   return (
     <section ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden">

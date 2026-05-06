@@ -14,8 +14,20 @@ export function Cursor() {
   const [trail, setTrail] = useState<TrailPoint[]>([])
   const trailIdRef = useRef(0)
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile) return
+
     setMounted(true)
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX)
@@ -23,23 +35,18 @@ export function Cursor() {
       
       setTrail(prev => {
         const newPoint = { x: e.clientX, y: e.clientY, id: trailIdRef.current++ }
-        return [...prev, newPoint].slice(-12)
+        return [...prev, newPoint].slice(-8)
       })
     }
 
     window.addEventListener('mousemove', moveCursor)
 
-    const interval = setInterval(() => {
-      setTrail(prev => prev.slice(1))
-    }, 50)
-
     return () => {
       window.removeEventListener('mousemove', moveCursor)
-      clearInterval(interval)
     }
-  }, [cursorX, cursorY])
+  }, [cursorX, cursorY, isMobile])
 
-  if (!mounted) return null
+  if (!mounted || isMobile) return null
 
   return (
     <>
