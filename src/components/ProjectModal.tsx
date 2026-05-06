@@ -162,7 +162,7 @@ export function ProjectModal({ projectId, onClose }: ProjectModalProps) {
               </div>
             </div>
 
-            <div className="p-6 md:p-8 overflow-y-auto max-h-[calc(100vh-14rem)] md:max-h-[calc(85vh-14rem)]">
+            <div className="p-6 md:p-8 overflow-y-auto max-h-[calc(100vh-14rem)] md:max-h-[calc(85vh-14rem)] pb-[calc(2rem+env(safe-area-inset-bottom))] md:pb-8">
               <div className="flex flex-wrap gap-4 mb-6">
                 <div className="flex items-center gap-2 text-sm text-[#7A7A8E]">
                   <User className="w-4 h-4" />
@@ -205,13 +205,13 @@ export function ProjectModal({ projectId, onClose }: ProjectModalProps) {
                 </ul>
               </div>
 
-              <div className="flex gap-4 pt-4 border-t border-[#2E2E3A]">
+              <div className="flex gap-4 pt-4 border-t border-[#2E2E3A] pb-[calc(1rem+env(safe-area-inset-bottom))] md:pb-4">
                 {project.github ? (
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1C1C24] border border-[#2E2E3A] text-[#A8A8B8] hover:text-white hover:border-[#4A7A9B] transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1C1C24] border border-[#2E2E3A] text-[#A8A8B8] hover:text-white hover:border-[#4A7A9B] transition-all"
                   >
                     <Github className="w-4 h-4" />
                     Ver Código
@@ -222,13 +222,13 @@ export function ProjectModal({ projectId, onClose }: ProjectModalProps) {
                     Privado
                   </span>
                 )}
-                
+
                 {project.demo ? (
                   <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#4A7A9B] text-white hover:bg-[#3d6a85] transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#4A7A9B] text-white hover:bg-[#3d6a85] transition-all"
                   >
                     <ExternalLink className="w-4 h-4" />
                     Ver Demo

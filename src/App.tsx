@@ -8,7 +8,7 @@ import { Skills } from './components/Skills'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 
-const ProjectModal = lazy(() => import('./components/ProjectModal'))
+const ProjectModal = lazy(() => import('./components/ProjectModal').then(module => ({ default: module.ProjectModal })))
 
 function App() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
