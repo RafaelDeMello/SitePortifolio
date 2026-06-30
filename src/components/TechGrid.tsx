@@ -46,7 +46,7 @@ const defaultIcons: Record<string, { icon: string; color: string }> = {
   "ESLint / Prettier": { icon: "Code2", color: "#8BAEC8" },
   "Zod": { icon: "CheckCircle", color: "#3fb950" },
   "shadcn/ui": { icon: "Layout", color: "#ffffff" },
-  "ChatGPT": { icon: "MessageSquare", color: "#10a37f" },
+  "Codex": { icon: "MessageSquare", color: "#10a37f" },
   "Claude": { icon: "Bot", color: "#d4a574" },
   "GitHub Copilot": { icon: "Bot", color: "#7c3aed" },
   "OpenCode": { icon: "Sparkles", color: "#8BAEC8" },

@@ -66,7 +66,7 @@ export function Navbar() {
     <>
       <motion.nav
         style={{ background }}
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-[#2E2E3A]"
+        className="fixed top-0 left-0 right-0 z-50 border-b border-[#2E2E3A]"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}

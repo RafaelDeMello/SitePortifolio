@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
 const projects = [
@@ -41,6 +41,14 @@ interface ProjectsProps {
 export function Projects({ onProjectClick }: ProjectsProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section id="projetos" className="py-32 px-6 relative">
@@ -56,7 +64,7 @@ export function Projects({ onProjectClick }: ProjectsProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight bg-gradient-to-r from-[#E8E8EE] via-[#A8A8B8] to-[#8BAEC8] bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight text-[#E8E8EE] md:bg-gradient-to-r md:from-[#E8E8EE] md:via-[#A8A8B8] md:to-[#8BAEC8] md:bg-clip-text md:text-transparent">
             Meus Projetos
           </h2>
           <motion.div
@@ -74,7 +82,7 @@ export function Projects({ onProjectClick }: ProjectsProps) {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-              whileHover={{ y: -8 }}
+              {...(!isMobile ? { whileHover: { y: -8 } as any } : {})}
               className="group relative cursor-pointer"
               onClick={() => onProjectClick(project.id)}
             >
@@ -84,24 +92,32 @@ export function Projects({ onProjectClick }: ProjectsProps) {
                   style={{ background: `linear-gradient(135deg, ${project.color.from}, ${project.color.to})` }}
                 >
                   {project.image ? (
-                    <motion.img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-[120%] object-cover opacity-50 group-hover:opacity-70 transition-opacity"
-                      initial={{ y: 0 }}
-                      animate={{ y: ["0%", "-10%"] }}
-                      transition={{ 
-                        duration: 8, 
-                        repeat: Infinity, 
-                        repeatType: "reverse", 
-                        ease: "easeInOut" 
-                      }}
-                    />
+                    isMobile ? (
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover opacity-50"
+                      />
+                    ) : (
+                      <motion.img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-[120%] object-cover opacity-50 group-hover:opacity-70 transition-opacity"
+                        initial={{ y: 0 }}
+                        animate={{ y: ["0%", "-10%"] }}
+                        transition={{ 
+                          duration: 8, 
+                          repeat: Infinity, 
+                          repeatType: "reverse", 
+                          ease: "easeInOut" 
+                        }}
+                      />
+                    )
                   ) : (
                     <span className="text-6xl text-white/20 font-mono relative z-10">{'{ }'}</span>
                   )}
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                    <div className="p-2 rounded-full bg-white/10 backdrop-blur">
+                    <div className="p-2 rounded-full bg-white/10">
                       <ArrowUpRight className="w-5 h-5 text-white" />
                     </div>
                   </div>

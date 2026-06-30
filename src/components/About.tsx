@@ -20,7 +20,7 @@ export function About() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight bg-gradient-to-r from-[#E8E8EE] via-[#A8A8B8] to-[#8BAEC8] bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight text-[#E8E8EE] md:bg-gradient-to-r md:from-[#E8E8EE] md:via-[#A8A8B8] md:to-[#8BAEC8] md:bg-clip-text md:text-transparent">
             Sobre Mim
           </h2>
           <motion.div
